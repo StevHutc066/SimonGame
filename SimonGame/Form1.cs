@@ -15,8 +15,8 @@ namespace SimonGame
     {
         // A list of the colors
         public static List<Color> computerPattern = new List<Color>();
-        public static List<Color> guestPattern = new List<Color>();
-        public SoundPlayer[] player = new SoundPlayer[5];
+        public static List<Color> playerPattern = new List<Color>();
+        public static SoundPlayer[] player = new SoundPlayer[5];
 
         public Form1()
         {

@@ -25,6 +25,7 @@ namespace SimonGame
 
         private void ComputerTurn()
         {
+            // Adds a random color to the color list
             float rand = rnd.Next(0,4);
             if (rand == 0)
             {
@@ -41,37 +42,51 @@ namespace SimonGame
             {
                 Form1.computerPattern.Add(Color.Red);
             }
+        }
 
+        private void compareMethod()
+        {
+            for(int i = 0; i < Form1.computerPattern.Count; i++)
+            {
+                if(Form1.playerPattern[i] == Form1.computerPattern[i])
+                {
 
-            //TODO: Use Switch statement after working
-            //switch (rand)
-            //{
-            //    case 1:
-            //        Console.WriteLine("Case 1");
-            //        break;
-            //    case 2:
-            //        Console.WriteLine("Case 2");
-            //        break;
-            //    default:
-            //        Console.WriteLine("Default case");
-            //        break;
-            //}
+                }
+            }
+
         }
 
         private void GameScreen_Load(object sender, EventArgs e)
         {
+            // Draws the buttons on-screen
             buttonDraw();
+            
+            // Clears past variables
             Form1.computerPattern.Clear();
             guess = 0;
+
+            // Refreshes the screen
             Refresh();
-            Thread.Sleep(1500);
-            
-            
-    }
+
+            // Second delay before start
+            Thread.Sleep(1000);
+
+            // Adds sounds into the global player
+            Form1.player[0] = new SoundPlayer(SimonGame.Properties.Resources.green);
+            Form1.player[1] = new SoundPlayer(SimonGame.Properties.Resources.red);
+            Form1.player[2] = new SoundPlayer(SimonGame.Properties.Resources.yellow);
+            Form1.player[3] = new SoundPlayer(SimonGame.Properties.Resources.blue);
+            Form1.player[4] = new SoundPlayer(SimonGame.Properties.Resources.mistake);
+
+            // Computer picks a color
+            ComputerTurn();
+
+
+        }
 
         private void GameScreen_Paint(object sender, PaintEventArgs e)
         {
-            ComputerTurn();
+            
         }
 
         private void buttonDraw()
@@ -80,13 +95,10 @@ namespace SimonGame
             GraphicsPath circlePath = new GraphicsPath();
             circlePath.AddEllipse(0,0,400, 400);
             circlePath.AddEllipse(150,150,100,100);
-
-            GraphicsPath newPath = new GraphicsPath();
-            newPath.AddEllipse
-            greenButton.Region = new Region(circlePath);
-            redButton.Region = new Region(circlePath);
-            yellowButton.Region = new Region(circlePath);
-            blueButton.Region = new Region(circlePath);
+            greenButton.Region = new Region(circlePath);           
+            //redButton.Region = new Region(newPath);
+            //yellowButton.Region = new Region(circlePath);
+            //blueButton.Region = new Region(circlePath);
 
         }
 
@@ -97,6 +109,30 @@ namespace SimonGame
             form.Controls.Remove(this);
             GameOverScreen gos = new GameOverScreen();
             form.Controls.Add(gos);
+        }
+
+        private void greenButton_Click(object sender, EventArgs e)
+        {
+            Form1.player[0].Play();
+            Form1.playerPattern.Add(Color.Green);
+        }
+
+        private void redButton_Click(object sender, EventArgs e)
+        {
+            Form1.player[1].Play();
+            Form1.playerPattern.Add(Color.Red);
+        }
+
+        private void yellowButton_Click(object sender, EventArgs e)
+        {
+            Form1.player[2].Play();
+            Form1.playerPattern.Add(Color.Yellow);
+        }
+
+        private void blueButton_Click(object sender, EventArgs e)
+        {
+            Form1.player[3].Play();
+            Form1.playerPattern.Add(Color.Blue);
         }
     }
 }
