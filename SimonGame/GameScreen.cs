@@ -17,43 +17,38 @@ namespace SimonGame
     {
         public int guess;
         public Random rnd = new Random();
+
         public GameScreen()
         {
             InitializeComponent();
         }
 
-
-        private void ComputerTurn()
+        private void buttonDraw()
         {
-            // Adds a random color to the color list
-            float rand = rnd.Next(0,4);
-            if (rand == 0)
-            {
-                Form1.computerPattern.Add(Color.Red);
-            }else if (rand == 1)
-            {
-                Form1.computerPattern.Add(Color.Red);
-            }
-            else if (rand == 2)
-            {
-                Form1.computerPattern.Add(Color.Red);
-            }
-            else if (rand == 3)
-            {
-                Form1.computerPattern.Add(Color.Red);
-            }
-        }
+            
+            // Changes the shape of the green button
+            GraphicsPath gPath = new GraphicsPath();
+            gPath.AddEllipse(0,0,400, 400);
+            gPath.AddEllipse(150,150,100,100);
+            greenButton.Region = new Region(gPath);
 
-        private void compareMethod()
-        {
-            for(int i = 0; i < Form1.computerPattern.Count; i++)
-            {
-                if(Form1.playerPattern[i] == Form1.computerPattern[i])
-                {
+            // Changes the shape of the red button
+            GraphicsPath gPath2 = new GraphicsPath();
+            gPath2.AddEllipse(-200, 0, 400, 400);
+            gPath2.AddEllipse(-50, 150,100,100);
+            redButton.Region = new Region(gPath2);
 
-                }
-            }
+            // Changes the shape of the yellow button
+            GraphicsPath gPath3 = new GraphicsPath();
+            gPath3.AddEllipse(0,-200,400,400);
+            gPath3.AddEllipse(150, -50, 100, 100);
+            yellowButton.Region = new Region(gPath3);
 
+            // Changes the shape of the blue button
+            GraphicsPath gPath4 = new GraphicsPath();
+            gPath4.AddEllipse(-200,-200,400,400);
+            gPath4.AddEllipse(-50, -50, 100, 100);
+            blueButton.Region = new Region(gPath4);
         }
 
         private void GameScreen_Load(object sender, EventArgs e)
@@ -63,7 +58,9 @@ namespace SimonGame
             
             // Clears past variables
             Form1.computerPattern.Clear();
+            Form1.playerPattern.Clear();
             guess = 0;
+            Form1.guessIndex = 0;
 
             // Refreshes the screen
             Refresh();
@@ -81,7 +78,91 @@ namespace SimonGame
             // Computer picks a color
             ComputerTurn();
 
+        }
 
+        private void ComputerTurn()
+        {
+            // Adds a random color to the color list
+            int rand = rnd.Next(0,4);
+
+            Form1.computerPattern.Add(rand);
+
+            switch (rand)
+            {
+                case 0:
+                    buttonLightMethod(greenButton);
+                    break;
+                case 1:
+                    buttonLightMethod(redButton);
+                    break;
+                case 2:
+                    buttonLightMethod(yellowButton);
+                    break;
+                case 3:
+                    buttonLightMethod(blueButton);
+                    break;
+                default:
+                    MessageBox.Show("ERROR");
+                    break;
+            }
+
+        }
+
+        private void buttonLightMethod(Button btn)
+        {
+            string clr = Convert.ToString(btn.BackColor);
+            Refresh();
+
+            switch (clr)
+            {
+                case "Color [ForestGreen]":
+                    
+                    greenButton.BackColor = Color.GreenYellow;
+                    Form1.player[0].Play();
+                    Refresh();
+                    Thread.Sleep(500);
+                    greenButton.BackColor = Color.ForestGreen;
+                    break;
+                case "Color [DarkRed]":
+                    
+                    redButton.BackColor = Color.Red;
+                    Form1.player[1].Play();
+                    Refresh();
+                    Thread.Sleep(500);
+                    redButton.BackColor = Color.DarkRed;
+                    break;
+                case "Color [Goldenrod]":
+                    
+                    yellowButton.BackColor = Color.Yellow;
+                    Form1.player[2].Play();
+                    Refresh();
+                    Thread.Sleep(500);
+                    yellowButton.BackColor = Color.Goldenrod;
+                    break;
+                case "Color [DarkBlue]":
+                    
+                    blueButton.BackColor = Color.DodgerBlue;
+                    Form1.player[3].Play();
+                    Refresh();
+                    Thread.Sleep(500);
+                    blueButton.BackColor = Color.DarkBlue;
+                    break;
+            }
+
+            Refresh();
+        }
+
+        private void playerTurn()
+        {
+            for (int i = 0; i < Form1.computerPattern.Count(); i++)
+            {
+                if (Form1.playerPattern[i] != Form1.computerPattern[i])
+                {
+                    GameOver();
+                }
+            }
+
+            ComputerTurn();
         }
 
         private void GameScreen_Paint(object sender, PaintEventArgs e)
@@ -89,22 +170,9 @@ namespace SimonGame
             
         }
 
-        private void buttonDraw()
-        {
-            
-            GraphicsPath circlePath = new GraphicsPath();
-            circlePath.AddEllipse(0,0,400, 400);
-            circlePath.AddEllipse(150,150,100,100);
-            greenButton.Region = new Region(circlePath);           
-            //redButton.Region = new Region(newPath);
-            //yellowButton.Region = new Region(circlePath);
-            //blueButton.Region = new Region(circlePath);
-
-        }
-
         public void GameOver()
         {
-            Thread.Sleep(2000);
+            Thread.Sleep(1200);
             Form form = base.FindForm();
             form.Controls.Remove(this);
             GameOverScreen gos = new GameOverScreen();
@@ -114,25 +182,33 @@ namespace SimonGame
         private void greenButton_Click(object sender, EventArgs e)
         {
             Form1.player[0].Play();
-            Form1.playerPattern.Add(Color.Green);
+            Form1.playerPattern.Add(0);
+            playerTurn();
+            Form1.guessIndex++;
         }
 
         private void redButton_Click(object sender, EventArgs e)
         {
             Form1.player[1].Play();
-            Form1.playerPattern.Add(Color.Red);
+            Form1.playerPattern.Add(1);
+            playerTurn();
+            Form1.guessIndex++;
         }
 
         private void yellowButton_Click(object sender, EventArgs e)
         {
             Form1.player[2].Play();
-            Form1.playerPattern.Add(Color.Yellow);
+            Form1.playerPattern.Add(2);
+            playerTurn();
+            Form1.guessIndex++;
         }
 
         private void blueButton_Click(object sender, EventArgs e)
         {
             Form1.player[3].Play();
-            Form1.playerPattern.Add(Color.Blue);
+            Form1.playerPattern.Add(3);
+            playerTurn();
+            Form1.guessIndex++;
         }
     }
 }

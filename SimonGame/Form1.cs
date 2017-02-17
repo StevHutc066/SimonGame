@@ -1,4 +1,8 @@
-﻿using System;
+﻿//Program: Simon Game
+//Created by Steven Hutchinson
+//Date: Feb 17, 2017
+//Desc: A pattern memory game based on colours
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,9 +18,11 @@ namespace SimonGame
     public partial class Form1 : Form
     {
         // A list of the colors
-        public static List<Color> computerPattern = new List<Color>();
-        public static List<Color> playerPattern = new List<Color>();
+        public static List<int> computerPattern = new List<int>();
+        public static List<int> playerPattern = new List<int>();
+        public static List<Button> buttonList = new List<Button>();
         public static SoundPlayer[] player = new SoundPlayer[5];
+        public static int guessIndex = 0;
 
         public Form1()
         {

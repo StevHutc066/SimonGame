@@ -38,7 +38,7 @@
             this.exitButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.GreenYellow;
             this.exitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.exitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Millimeter, ((byte)(0)));
-            this.exitButton.Location = new System.Drawing.Point(203, 392);
+            this.exitButton.Location = new System.Drawing.Point(173, 311);
             this.exitButton.Name = "exitButton";
             this.exitButton.Size = new System.Drawing.Size(254, 126);
             this.exitButton.TabIndex = 1;
@@ -52,7 +52,7 @@
             this.playButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.GreenYellow;
             this.playButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.playButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Millimeter, ((byte)(0)));
-            this.playButton.Location = new System.Drawing.Point(203, 68);
+            this.playButton.Location = new System.Drawing.Point(173, 164);
             this.playButton.Name = "playButton";
             this.playButton.Size = new System.Drawing.Size(254, 126);
             this.playButton.TabIndex = 2;
@@ -70,7 +70,8 @@
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.playButton);
             this.Name = "MainScreen";
-            this.Size = new System.Drawing.Size(661, 587);
+            this.Size = new System.Drawing.Size(600, 600);
+            this.Load += new System.EventHandler(this.MainScreen_Load);
             this.ResumeLayout(false);
 
         }

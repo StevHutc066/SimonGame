@@ -38,7 +38,7 @@
             // 
             this.greenButton.BackColor = System.Drawing.Color.ForestGreen;
             this.greenButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.greenButton.Location = new System.Drawing.Point(118, 80);
+            this.greenButton.Location = new System.Drawing.Point(97, 97);
             this.greenButton.Name = "greenButton";
             this.greenButton.Size = new System.Drawing.Size(200, 200);
             this.greenButton.TabIndex = 0;
@@ -49,7 +49,7 @@
             // 
             this.redButton.BackColor = System.Drawing.Color.DarkRed;
             this.redButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.redButton.Location = new System.Drawing.Point(343, 80);
+            this.redButton.Location = new System.Drawing.Point(303, 97);
             this.redButton.Name = "redButton";
             this.redButton.Size = new System.Drawing.Size(200, 200);
             this.redButton.TabIndex = 0;
@@ -60,7 +60,7 @@
             // 
             this.yellowButton.BackColor = System.Drawing.Color.Goldenrod;
             this.yellowButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.yellowButton.Location = new System.Drawing.Point(118, 306);
+            this.yellowButton.Location = new System.Drawing.Point(97, 303);
             this.yellowButton.Name = "yellowButton";
             this.yellowButton.Size = new System.Drawing.Size(200, 200);
             this.yellowButton.TabIndex = 0;
@@ -71,7 +71,7 @@
             // 
             this.blueButton.BackColor = System.Drawing.Color.DarkBlue;
             this.blueButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.blueButton.Location = new System.Drawing.Point(343, 306);
+            this.blueButton.Location = new System.Drawing.Point(303, 303);
             this.blueButton.Name = "blueButton";
             this.blueButton.Size = new System.Drawing.Size(200, 200);
             this.blueButton.TabIndex = 0;
@@ -89,7 +89,7 @@
             this.Controls.Add(this.greenButton);
             this.DoubleBuffered = true;
             this.Name = "GameScreen";
-            this.Size = new System.Drawing.Size(661, 587);
+            this.Size = new System.Drawing.Size(600, 600);
             this.Load += new System.EventHandler(this.GameScreen_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.GameScreen_Paint);
             this.ResumeLayout(false);

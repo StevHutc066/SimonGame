@@ -30,5 +30,9 @@ namespace SimonGame
             Application.Exit();
         }
 
+        private void MainScreen_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

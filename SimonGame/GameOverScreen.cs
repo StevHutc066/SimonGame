@@ -16,5 +16,18 @@ namespace SimonGame
         {
             InitializeComponent();
         }
+
+        private void GameOverScreen_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void mainScreenButton_Click(object sender, EventArgs e)
+        {
+            Form f = this.FindForm();
+            f.Controls.Remove(this);
+            MainScreen ms = new MainScreen();
+            f.Controls.Add(ms);
+        }
     }
 }
