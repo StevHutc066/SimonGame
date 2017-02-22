@@ -58,7 +58,7 @@
             this.mainScreenButton.TabIndex = 1;
             this.mainScreenButton.Text = "Main Screen";
             this.mainScreenButton.UseVisualStyleBackColor = false;
-            //this.mainScreenButton.Click += new System.EventHandler(this.mainScreenButton_Click);
+            this.mainScreenButton.Click += new System.EventHandler(this.mainScreenButton_Click_1);
             // 
             // GameOverScreen
             // 

@@ -29,5 +29,10 @@ namespace SimonGame
             MainScreen ms = new MainScreen();
             f.Controls.Add(ms);
         }
+
+        private void mainScreenButton_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

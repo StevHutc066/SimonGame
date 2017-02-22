@@ -25,7 +25,6 @@ namespace SimonGame
 
         private void buttonDraw()
         {
-            
             // Changes the shape of the green button
             GraphicsPath gPath = new GraphicsPath();
             gPath.AddEllipse(0,0,400, 400);
@@ -77,7 +76,6 @@ namespace SimonGame
 
             // Computer picks a color
             ComputerTurn();
-
         }
 
         private void ComputerTurn()
@@ -87,82 +85,75 @@ namespace SimonGame
 
             Form1.computerPattern.Add(rand);
 
-            switch (rand)
-            {
-                case 0:
-                    buttonLightMethod(greenButton);
-                    break;
-                case 1:
-                    buttonLightMethod(redButton);
-                    break;
-                case 2:
-                    buttonLightMethod(yellowButton);
-                    break;
-                case 3:
-                    buttonLightMethod(blueButton);
-                    break;
-                default:
-                    MessageBox.Show("ERROR");
-                    break;
-            }
-
+            buttonLightMethod();
+            
         }
 
-        private void buttonLightMethod(Button btn)
+        private void buttonLightMethod()
         {
-            string clr = Convert.ToString(btn.BackColor);
+            // Refreshes the screen
             Refresh();
 
-            switch (clr)
+            for (int i = 0; i < Form1.computerPattern.Count; i++)
             {
-                case "Color [ForestGreen]":
-                    
-                    greenButton.BackColor = Color.GreenYellow;
-                    Form1.player[0].Play();
-                    Refresh();
-                    Thread.Sleep(500);
-                    greenButton.BackColor = Color.ForestGreen;
-                    break;
-                case "Color [DarkRed]":
-                    
-                    redButton.BackColor = Color.Red;
-                    Form1.player[1].Play();
-                    Refresh();
-                    Thread.Sleep(500);
-                    redButton.BackColor = Color.DarkRed;
-                    break;
-                case "Color [Goldenrod]":
-                    
-                    yellowButton.BackColor = Color.Yellow;
-                    Form1.player[2].Play();
-                    Refresh();
-                    Thread.Sleep(500);
-                    yellowButton.BackColor = Color.Goldenrod;
-                    break;
-                case "Color [DarkBlue]":
-                    
-                    blueButton.BackColor = Color.DodgerBlue;
-                    Form1.player[3].Play();
-                    Refresh();
-                    Thread.Sleep(500);
-                    blueButton.BackColor = Color.DarkBlue;
-                    break;
-            }
-
-            Refresh();
-        }
-
-        private void playerTurn()
-        {
-            for (int i = 0; i < Form1.computerPattern.Count(); i++)
-            {
-                if (Form1.playerPattern[i] != Form1.computerPattern[i])
+                int color = Form1.computerPattern[i];
+                switch (color)
                 {
-                    GameOver();
+                    case 0:
+
+                        greenButton.BackColor = Color.GreenYellow;
+                        Form1.player[0].Play();
+                        Refresh();
+                        Thread.Sleep(1000);
+                        greenButton.BackColor = Color.ForestGreen;
+                        break;
+                    case 1:
+
+                        redButton.BackColor = Color.Red;
+                        Form1.player[1].Play();
+                        Refresh();
+                        Thread.Sleep(1000);
+                        redButton.BackColor = Color.DarkRed;
+                        break;
+                    case 2:
+
+                        yellowButton.BackColor = Color.Yellow;
+                        Form1.player[2].Play();
+                        Refresh();
+                        Thread.Sleep(1000);
+                        yellowButton.BackColor = Color.Goldenrod;
+                        break;
+                    case 3:
+
+                        blueButton.BackColor = Color.DodgerBlue;
+                        Form1.player[3].Play();
+                        Refresh();
+                        Thread.Sleep(1000);
+                        blueButton.BackColor = Color.DarkBlue;
+                        break;
                 }
             }
+            
+            Refresh();
+        }
 
-            ComputerTurn();
+        // TODO fix the light up
+        private void compareMethod()
+        {
+            if (Form1.guessIndex == Form1.playerPattern.Count)
+            {
+                Form1.guessIndex = 0;
+                ComputerTurn();
+            }
+            if (Form1.computerPattern[Form1.guessIndex] != Form1.playerPattern[Form1.guessIndex])
+            {
+                GameOver();
+            }
+            else
+            {
+                ComputerTurn();
+            }
+            
         }
 
         private void GameScreen_Paint(object sender, PaintEventArgs e)
@@ -183,32 +174,36 @@ namespace SimonGame
         {
             Form1.player[0].Play();
             Form1.playerPattern.Add(0);
-            playerTurn();
+            compareMethod();
             Form1.guessIndex++;
+            
         }
 
         private void redButton_Click(object sender, EventArgs e)
         {
             Form1.player[1].Play();
             Form1.playerPattern.Add(1);
-            playerTurn();
+            compareMethod();
             Form1.guessIndex++;
+            
         }
 
         private void yellowButton_Click(object sender, EventArgs e)
         {
             Form1.player[2].Play();
             Form1.playerPattern.Add(2);
-            playerTurn();
+            compareMethod();
             Form1.guessIndex++;
+            
         }
 
         private void blueButton_Click(object sender, EventArgs e)
         {
             Form1.player[3].Play();
             Form1.playerPattern.Add(3);
-            playerTurn();
+            compareMethod();
             Form1.guessIndex++;
+            
         }
     }
 }
