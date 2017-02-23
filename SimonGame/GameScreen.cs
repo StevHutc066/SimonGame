@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+ * Description:     A basic Simon Game
+ * Author:          Steven Hutchinson-Lewis        
+ * Date:            February, 21st 2017
+ */
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -27,25 +33,25 @@ namespace SimonGame
         {
             // Changes the shape of the green button
             GraphicsPath gPath = new GraphicsPath();
-            gPath.AddEllipse(0,0,400, 400);
-            gPath.AddEllipse(150,150,100,100);
+            gPath.AddEllipse(0, 0, 400, 400);
+            gPath.AddEllipse(150, 150, 100, 100);
             greenButton.Region = new Region(gPath);
 
             // Changes the shape of the red button
             GraphicsPath gPath2 = new GraphicsPath();
             gPath2.AddEllipse(-200, 0, 400, 400);
-            gPath2.AddEllipse(-50, 150,100,100);
+            gPath2.AddEllipse(-50, 150, 100, 100);
             redButton.Region = new Region(gPath2);
 
             // Changes the shape of the yellow button
             GraphicsPath gPath3 = new GraphicsPath();
-            gPath3.AddEllipse(0,-200,400,400);
+            gPath3.AddEllipse(0, -200, 400, 400);
             gPath3.AddEllipse(150, -50, 100, 100);
             yellowButton.Region = new Region(gPath3);
 
             // Changes the shape of the blue button
             GraphicsPath gPath4 = new GraphicsPath();
-            gPath4.AddEllipse(-200,-200,400,400);
+            gPath4.AddEllipse(-200, -200, 400, 400);
             gPath4.AddEllipse(-50, -50, 100, 100);
             blueButton.Region = new Region(gPath4);
         }
@@ -54,7 +60,7 @@ namespace SimonGame
         {
             // Draws the buttons on-screen
             buttonDraw();
-            
+
             // Clears past variables
             Form1.computerPattern.Clear();
             Form1.playerPattern.Clear();
@@ -84,11 +90,11 @@ namespace SimonGame
             // Adds a random color to the color list
             Form1.computerPattern.Add(rnd.Next(0, 4));
 
-            buttonLightMethod();
-            
+            ButtonLightMethod();
+
         }
 
-        private void buttonLightMethod()
+        private void ButtonLightMethod()
         {
             // Refreshes the screen
             Refresh();
@@ -141,18 +147,18 @@ namespace SimonGame
                         break;
                 }
             }
-            
+
             // Refreshes screen
             Refresh();
         }
 
         // Compares user input to the computers colours
-        private void compareMethod()
+        private void CompareMethod()
         {
             // Adds one to the guess index
             Form1.guessIndex++;
 
-            
+
             // Checks to see if the input is equivalent to the comoputer's pattern
             for (int i = 0; i < Form1.guessIndex; i++)
             {
@@ -168,7 +174,7 @@ namespace SimonGame
                     Refresh();
                 }
             }
-            
+
             // If player guesses the last colour then the computer goes again
             if (Form1.guessIndex == Form1.computerPattern.Count)
             {
@@ -207,7 +213,7 @@ namespace SimonGame
         {
             Form1.player[0].Play();
             Form1.playerPattern.Add(0);
-            compareMethod();
+            CompareMethod();
         }
 
         // Plays button sounds and compares it to the computer colours
@@ -215,7 +221,7 @@ namespace SimonGame
         {
             Form1.player[1].Play();
             Form1.playerPattern.Add(1);
-            compareMethod();
+            CompareMethod();
         }
 
         // Plays button sounds and compares it to the computer colours
@@ -223,7 +229,7 @@ namespace SimonGame
         {
             Form1.player[2].Play();
             Form1.playerPattern.Add(2);
-            compareMethod();
+            CompareMethod();
         }
 
         // Plays button sounds and compares it to the computer colours
@@ -231,7 +237,7 @@ namespace SimonGame
         {
             Form1.player[3].Play();
             Form1.playerPattern.Add(3);
-            compareMethod();
+            CompareMethod();
         }
     }
 }
