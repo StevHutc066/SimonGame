@@ -19,20 +19,17 @@ namespace SimonGame
 
         private void GameOverScreen_Load(object sender, EventArgs e)
         {
-
-        }
-
-        private void mainScreenButton_Click(object sender, EventArgs e)
-        {
-            Form f = this.FindForm();
-            f.Controls.Remove(this);
-            MainScreen ms = new MainScreen();
-            f.Controls.Add(ms);
+            // Tells player what length the pattern got to through label
+            patternLengthLabel.Text = "Your pattern lenth was: " + Form1.computerPattern.Count;
         }
 
         private void mainScreenButton_Click_1(object sender, EventArgs e)
         {
-
+            // Goes back to MainScreen
+            Form f = this.FindForm();
+            f.Controls.Remove(this);
+            MainScreen ms = new MainScreen();
+            f.Controls.Add(ms);
         }
     }
 }

@@ -61,11 +61,12 @@ namespace SimonGame
             guess = 0;
             Form1.guessIndex = 0;
 
-            // Refreshes the screen
-            Refresh();
 
             // Second delay before start
             Thread.Sleep(1000);
+
+            // Refreshes the screen
+            Refresh();
 
             // Adds sounds into the global player
             Form1.player[0] = new SoundPlayer(SimonGame.Properties.Resources.green);
@@ -81,9 +82,7 @@ namespace SimonGame
         private void ComputerTurn()
         {
             // Adds a random color to the color list
-            int rand = rnd.Next(0,4);
-
-            Form1.computerPattern.Add(rand);
+            Form1.computerPattern.Add(rnd.Next(0, 4));
 
             buttonLightMethod();
             
@@ -94,10 +93,11 @@ namespace SimonGame
             // Refreshes the screen
             Refresh();
 
+            // Lights up the button pressed
             for (int i = 0; i < Form1.computerPattern.Count; i++)
             {
-                int color = Form1.computerPattern[i];
-                switch (color)
+
+                switch (Form1.computerPattern[i])
                 {
                     case 0:
 
@@ -106,6 +106,7 @@ namespace SimonGame
                         Refresh();
                         Thread.Sleep(1000);
                         greenButton.BackColor = Color.ForestGreen;
+                        Refresh();
                         break;
                     case 1:
 
@@ -114,6 +115,7 @@ namespace SimonGame
                         Refresh();
                         Thread.Sleep(1000);
                         redButton.BackColor = Color.DarkRed;
+                        Refresh();
                         break;
                     case 2:
 
@@ -122,6 +124,7 @@ namespace SimonGame
                         Refresh();
                         Thread.Sleep(1000);
                         yellowButton.BackColor = Color.Goldenrod;
+                        Refresh();
                         break;
                     case 3:
 
@@ -130,80 +133,100 @@ namespace SimonGame
                         Refresh();
                         Thread.Sleep(1000);
                         blueButton.BackColor = Color.DarkBlue;
+                        Refresh();
                         break;
                 }
             }
             
+            // Refreshes screen
             Refresh();
         }
 
-        // TODO fix the light up
+        // Compares user input to the computers colours
         private void compareMethod()
         {
-            if (Form1.guessIndex == Form1.playerPattern.Count)
+            // Adds one to the guess index
+            Form1.guessIndex++;
+
+            
+            // Checks to see if the input is equivalent to the comoputer's pattern
+            for (int i = 0; i < Form1.guessIndex; i++)
             {
+                if (Form1.computerPattern[i] != Form1.playerPattern[i])
+                {
+                    // Game OVER! :(
+                    GameOver();
+                }
+                else
+                {
+                    // Refreshes screen
+                    Refresh();
+                }
+            }
+            
+            // If player guesses the last colour then the computer goes again
+            if (Form1.guessIndex == Form1.computerPattern.Count)
+            {
+                // Clears the players input
+                Form1.playerPattern.Clear();
+
+                // Clears the guess index
                 Form1.guessIndex = 0;
+
+                // Waits a bit
+                Thread.Sleep(800);
+
+                // Coputer picks another colour
                 ComputerTurn();
             }
-            if (Form1.computerPattern[Form1.guessIndex] != Form1.playerPattern[Form1.guessIndex])
-            {
-                GameOver();
-            }
-            else
-            {
-                ComputerTurn();
-            }
-            
         }
 
-        private void GameScreen_Paint(object sender, PaintEventArgs e)
-        {
-            
-        }
-
+        // If player loses
         public void GameOver()
         {
+            // Play gameover sound
+            Form1.player[4].Play();
+
+            // Wait for a bit
             Thread.Sleep(1200);
-            Form form = base.FindForm();
+
+            // Go to the GameOver screen
+            Form form = this.FindForm();
             form.Controls.Remove(this);
             GameOverScreen gos = new GameOverScreen();
             form.Controls.Add(gos);
         }
 
+        // Plays button sounds and compares it to the computer colours
         private void greenButton_Click(object sender, EventArgs e)
         {
             Form1.player[0].Play();
             Form1.playerPattern.Add(0);
             compareMethod();
-            Form1.guessIndex++;
-            
         }
 
+        // Plays button sounds and compares it to the computer colours
         private void redButton_Click(object sender, EventArgs e)
         {
             Form1.player[1].Play();
             Form1.playerPattern.Add(1);
             compareMethod();
-            Form1.guessIndex++;
-            
         }
 
+        // Plays button sounds and compares it to the computer colours
         private void yellowButton_Click(object sender, EventArgs e)
         {
             Form1.player[2].Play();
             Form1.playerPattern.Add(2);
             compareMethod();
-            Form1.guessIndex++;
-            
         }
 
+        // Plays button sounds and compares it to the computer colours
         private void blueButton_Click(object sender, EventArgs e)
         {
             Form1.player[3].Play();
             Form1.playerPattern.Add(3);
             compareMethod();
-            Form1.guessIndex++;
-            
         }
     }
 }

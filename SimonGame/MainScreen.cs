@@ -19,6 +19,7 @@ namespace SimonGame
 
         private void playButton_Click(object sender, EventArgs e)
         {
+            // Plays the game
             Form f = this.FindForm();
             f.Controls.Remove(this);
             GameScreen gs = new GameScreen();
@@ -27,6 +28,7 @@ namespace SimonGame
 
         private void exitButton_Click(object sender, EventArgs e)
         {
+            // Closes the application
             Application.Exit();
         }
 

@@ -38,11 +38,11 @@
             this.patternLengthLabel.BackColor = System.Drawing.Color.Transparent;
             this.patternLengthLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.patternLengthLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.patternLengthLabel.Location = new System.Drawing.Point(154, 69);
+            this.patternLengthLabel.Location = new System.Drawing.Point(121, 69);
             this.patternLengthLabel.Name = "patternLengthLabel";
-            this.patternLengthLabel.Size = new System.Drawing.Size(293, 31);
+            this.patternLengthLabel.Size = new System.Drawing.Size(315, 31);
             this.patternLengthLabel.TabIndex = 0;
-            this.patternLengthLabel.Text = "Yer pattern length was:";
+            this.patternLengthLabel.Text = "Your pattern length was: ";
             // 
             // mainScreenButton
             // 
