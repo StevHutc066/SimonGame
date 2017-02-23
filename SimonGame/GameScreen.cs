@@ -1,6 +1,6 @@
 ﻿/*
  * Description:     A basic Simon Game
- * Author:          Steven Hutchinson-Lewis        
+ * Author:          Steven Hutchinson       
  * Date:            February, 21st 2017
  */
 
