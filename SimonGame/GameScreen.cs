@@ -104,9 +104,10 @@ namespace SimonGame
                         greenButton.BackColor = Color.GreenYellow;
                         Form1.player[0].Play();
                         Refresh();
-                        Thread.Sleep(1000);
+                        Thread.Sleep(600);
                         greenButton.BackColor = Color.ForestGreen;
                         Refresh();
+                        Thread.Sleep(600);
                         break;
                     case 1:
 
@@ -116,6 +117,7 @@ namespace SimonGame
                         Thread.Sleep(1000);
                         redButton.BackColor = Color.DarkRed;
                         Refresh();
+                        Thread.Sleep(600);
                         break;
                     case 2:
 
@@ -125,6 +127,7 @@ namespace SimonGame
                         Thread.Sleep(1000);
                         yellowButton.BackColor = Color.Goldenrod;
                         Refresh();
+                        Thread.Sleep(600);
                         break;
                     case 3:
 
@@ -134,6 +137,7 @@ namespace SimonGame
                         Thread.Sleep(1000);
                         blueButton.BackColor = Color.DarkBlue;
                         Refresh();
+                        Thread.Sleep(600);
                         break;
                 }
             }
@@ -156,6 +160,7 @@ namespace SimonGame
                 {
                     // Game OVER! :(
                     GameOver();
+                    return;
                 }
                 else
                 {
